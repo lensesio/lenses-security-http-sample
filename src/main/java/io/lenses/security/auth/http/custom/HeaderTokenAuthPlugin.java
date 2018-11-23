@@ -14,7 +14,7 @@ public class HeaderTokenAuthPlugin implements HttpAuthenticationPlugin {
   @Override
   public UserAndGroups authenticate(HttpRequest httpRequest) {
     // find the header that contains our api key
-    Header header = httpRequest.getHeaders().stream().filter(it -> it.getName().equals(API_HEADER_NAME)).findFirst().orElse(null);
+    Header header = httpRequest.getHeaders().stream().filter(it -> it.getName().equalsIgnoreCase(API_HEADER_NAME)).findFirst().orElse(null);
     if (header == null)
       return null;
     // if the header is present then we use it to look up a user in the user store
